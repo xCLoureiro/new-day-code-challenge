@@ -1,10 +1,15 @@
 #!/bin/sh
 
-MOVIES_FILE=/root/data/in/movies.dat
-RATINGS_FILE=/root/data/in/ratings.dat
-OUT_DIR=/root/data/out
+if [ "$#" -ne 4 ]; then
+    echo "Application usage: ./run_spark.sh <jar_file> <moviesFile> <ratingsFile> <outDir (without last /)>"
+    exit 1
+fi
 
-JAR=/root/target/scala-2.10/new-day-code-challenge-assembly-1.0.0-SNAPSHOT.jar
+JAR=$1
+
+MOVIES_FILE=$2
+RATINGS_FILE=$3
+OUT_DIR=$4
 
 spark-submit \
 --master local[*] \
